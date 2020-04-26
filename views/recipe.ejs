@@ -1,0 +1,66 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+  <h1 class="recipe-title"><%= recipe.title %></h1>
+  <img class="recipe-img" src=<%= recipe.images.medium %> alt="Card image cap">
+  <div class="row">
+    <div class="col-md-6 recipe-details">
+      <h3>Ingredients</h3>
+      <ul>
+        <% recipe.ingredients.forEach(function(ingredient) { %>
+        <li>
+          <p><%= ingredient.amount %> <%= ingredient.measurement %> <%= ingredient.name %></p>
+          <% if (ingredient.title) { %>
+
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header"><%= ingredient.type %></div>
+            <div class="card-body">
+              <h5 class="card-title"><%= ingredient.title %></h5>
+              <div class="card-text">
+                <%- ingredient.text %>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </li>
+
+        <% }) %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Servings</th>
+            <th scope="col">Prep Time</th>
+            <th scope="col">Cook Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= recipe.servings %></td>
+            <td><%= recipe.prepTime %></td>
+            <td><%= recipe.cookTime %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="recipe-details">
+        <h3>Instructions</h3>
+        <ol>
+          <% recipe.directions.forEach(function(step) { %>
+          <li><%= step.instructions %>
+            <% if (step.optional) { %>
+            <i>Can be skipped.</i>
+            <% } %>
+          </li>
+          <% }); %>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <a href="/">Back to List</a>
+</div>
+
+<%- include("partials/footer") -%>

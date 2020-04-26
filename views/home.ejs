@@ -1,0 +1,19 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+  <div class="row recipes">
+    <% recipes.forEach(function(recipe) { %>
+    <div class="card ingredient-card col-md-3 col-sm-4">
+      <a href=<%= "recipes/" + recipe.uuid %>><img class="card-img-top card-img" src=<%= recipe.images.medium %> alt="Card image cap">
+        <h5 class="card-title recipe-title"><%= recipe.title %></h5>
+      </a>
+      <div class="card-body">
+        <p class="card-text"><%= recipe.description %></p>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+
+</div>
+
+<%- include("partials/footer") -%>
